@@ -1,9 +1,19 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import routes from './routes';
+import indexRoutes from './routes';
+import booksRoutes from './routes/books';
+import config from '../config/config';
+import datasource from '../config/datasource';
 
 const app = express();
+
+//Middleware
+app.config = config;
+app.datasource = datasource(app);
 app.use(bodyParser.json());
-app.use('/', routes);
+
+//Routes
+indexRoutes(app);
+booksRoutes(app);
 
 export default app;
