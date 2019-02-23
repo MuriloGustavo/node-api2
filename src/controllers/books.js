@@ -28,7 +28,7 @@ class BooksController {
         const params = req.params;
 
         return this.Book.update(req.body, { where: params })
-            .then(() => res.send(200))
+            .then(() => res.sendStatus(200))
             .catch(err => res.status(422).send(err.message)); 
     }
 
